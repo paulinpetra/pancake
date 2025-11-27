@@ -16,20 +16,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!--added header-->
+    <header>
+      <!--removed alt text and changed to Swedish -->
+      <img class="header-img" src="images/Rectangle 1.png" alt="" />
+    </header>
     <main class="container">
-      <!--added more context to alt text and changed to Swedish -->
-      <img
-        class="header-img"
-        src="images/Rectangle 1.png"
-        alt="En hög med gyllenbruna pannkakor med hallon och grädde"
-      />
-
+      <!--added header inside article-->
       <article class="card">
-        <h1>Enkelt recept på pannkakor</h1>
-        <p class="subtitle">
-          Gör traditionella tunna pannkakor med detta enkla och goda
-          pannkaksrecept
-        </p>
+        <header>
+          <h1>Enkelt recept på pannkakor</h1>
+          <p class="subtitle">
+            Gör traditionella tunna pannkakor med detta enkla och goda
+            pannkaksrecept
+          </p>
+        </header>
+
         <section class="content-section ingredients">
           <h2>Ingredienser</h2>
           <p>För 4 portioner</p>
@@ -61,17 +63,21 @@
 
         <section class="content-section serving">
           <h2>Serveringsförslag</h2>
-          <div class="pancake-images">
-            <!--changed alt text to Swedish -->
+          <!--changed alt text to Swedish and used figure insteda of div -->
+
+          <figure class="pancake-images">
             <img
               src="/images/Rectangle 2.png"
-              alt="en hög med pannkakor på ett fat"
+              alt="Pannkakor staplade på ett fat"
+              loading="lazy"
             />
             <img
               src="/images/Rectangle 3.png"
-              alt="ett fat med pannkakor toppade med apelsinskivor"
+              alt="Pannkakor toppade med apelsinskivor"
+              loading="lazy"
             />
-          </div>
+            <figcaption>Exempel på hur du kan servera pannkakorna.</figcaption>
+          </figure>
         </section>
       </article>
     </main>

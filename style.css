@@ -1,17 +1,15 @@
 /* 
-  CSS ORGANIZATION USING CASCADE LAYERS
-  Layers order (lowest priority → highest priority):
-  reset → base → layout → components → utilities (overrides everything
+  CSS organized using Cascade Layers
+  (from lowest priority layers → highest priority layers)
 */
 
 /* ===== LAYER DEFINITIONS ===== */
-/* These will create a stack order where the higher wins in the cascade
-The browser checks the layers first, then specificity and then order */
+/* creates a stack order for the layers that will be checked first by the browser, before specificity */
 
 @layer reset, base, layout, components, utilities;
 
-/* ===== 1. RESET LAYER ===== */
-/* Low specificity resets */
+/* ===== RESET LAYER ===== */
+/* resets that will have low specificity */
 @layer reset {
   * {
     margin: 0;
@@ -20,27 +18,26 @@ The browser checks the layers first, then specificity and then order */
   }
 }
 
-/* ===== 2. BASE LAYER ===== */
-/* Root variables and basic element styling */
+/* ===== BASE LAYER ===== */
+/* root variables and basic element styling */
 @layer base {
   :root {
-    /* Color palette using css variables */
-    --color-primary: rgba(161, 0, 0, 1);
-    --color-primary-light: rgba(161, 0, 0, 0.3);
-    --color-background: rgba(252, 252, 252, 1);
-    --color-surface: rgba(235, 235, 235, 1);
-    --color-placeholder: rgba(217, 217, 217, 1);
-    --color-text: rgba(0, 0, 0, 1);
-    --color-border: rgba(252, 252, 252, 1);
+    /* colors using css variables and oklch */
+    --color-primary: oklch(0.445 0.183 29.2);
+    --color-primary-light: oklch(0.445 0.183 29.2 / 0.3);
+    --color-background: oklch(0.991 0 0);
+    --color-surface: oklch(0.94 0 0);
+    --color-placeholder: oklch(0.885 0 0);
+    --color-text: oklch(0 0 0);
+    --color-border: oklch(0.991 0 0);
 
-    /* Spacing scale */
-    --space-xs: 0.5rem;
+    /* spacing */
     --space-sm: 1rem;
     --space-md: 1.5rem;
     --space-lg: 3rem;
     --space-xl: 4rem;
 
-    /* Typography */
+    /* typography */
     --font-family-base: "Open Sans", sans-serif;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
@@ -48,7 +45,7 @@ The browser checks the layers first, then specificity and then order */
     --font-size-lg: 1.75rem;
     --line-height-base: 1;
 
-    /* Layout */
+    /* layout */
     --container-max-width: 80rem;
   }
 
@@ -63,15 +60,15 @@ The browser checks the layers first, then specificity and then order */
     padding-bottom: var(--space-xl);
   }
 
-  /* Base list styles */
+  /* base list styles */
   ul,
   ol {
     list-style-position: inside;
   }
 }
 
-/* ===== 3. LAYOUT LAYER ===== */
-/* Layout and structural components */
+/* ===== LAYOUT LAYER ===== */
+/* page level structure */
 @layer layout {
   .container {
     width: 100%;
@@ -82,17 +79,19 @@ The browser checks the layers first, then specificity and then order */
   }
 }
 
-/* ===== 4. COMPONENTS LAYER ===== */
-/* Specific UI components */
+/* ===== COMPONENTS LAYER ===== */
+/* UI components */
 @layer components {
-  /* Header component */
+  /* Header Component */
   .header-img {
     width: 100%;
     object-fit: cover;
     border: 1px solid var(--color-border);
   }
 
-  /* Card component */
+  /* Card Component (article) */
+  /* added nesting */
+
   .card {
     background: var(--color-background);
     width: 100%;
@@ -100,37 +99,32 @@ The browser checks the layers first, then specificity and then order */
     flex-direction: column;
     gap: var(--space-md);
     padding: var(--space-lg) var(--space-lg) var(--space-xl);
+
+    & h1 {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-base);
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    & .subtitle {
+      font-weight: var(--font-weight-normal);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-base);
+      margin-bottom: var(--space-md);
+      background: var(--color-surface);
+      padding: var(--space-sm);
+    }
   }
-
-  /* Typography within card */
-  /* h1 very generic - change to component scoping? ex .car h1 or maybe [data-component="card"] h1 */
-
-  h1 {
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-base);
-    color: var(--color-primary);
-    margin-bottom: var(--space-sm);
-  }
-  /* h1 very generic - change? ex .card .subtitle */
-
-  .subtitle {
-    font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
-    margin-bottom: var(--space-md);
-    background: var(--color-surface);
-    padding: var(--space-sm);
-  }
-
-  /* Content sections */
+  /* 3 Content Sections */
   .content-section {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
   }
 
-  /* Image grid */
+  /* Image Grid */
   .pancake-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -145,9 +139,9 @@ The browser checks the layers first, then specificity and then order */
   }
 }
 
-/* ===== 5. UTILITIES LAYER ===== */
-/* High-specificity helper classes that should override everything */
-/* (Empty for now since but could have some custom utility classes */
+/* ===== UTILITIES LAYER ===== */
+/* single-purpose helper classes that can override everything */
+/* empty for now but could have some custom utility classes */
 @layer utilities {
-  /* Example: .text-center { text-align: center; } */
+  /* example: .text-center { text-align: center; } */
 }

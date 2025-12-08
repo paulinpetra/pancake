@@ -12,13 +12,13 @@ html {
 body {
   background-color: rgba(161, 0, 0, 0.3);
   color: rgba(0, 0, 0, 1);
-  padding-bottom: 4rem;
+  padding-block-end: 4rem; /* change to logical property */
 }
 
 .container {
   width: 100%;
   max-width: 80rem;
-  margin: 0 auto;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
 }
@@ -35,7 +35,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 3rem 3rem 4rem;
+  padding-inline: 3rem;
+  padding-block: 3rem 4rem;
 }
 
 h1 {
@@ -43,14 +44,14 @@ h1 {
   font-size: 1.75rem;
   line-height: 1;
   color: rgba(161, 0, 0, 1);
-  margin-bottom: 1rem;
+  margin-block-end: 1rem; /* change to logical property */
 }
 
 .subtitle {
   font-weight: 400;
   font-size: 1rem;
   line-height: 1;
-  margin-bottom: 1.5rem;
+  margin-block-end: 1.5rem;
   background: rgba(235, 235, 235, 1);
   padding: 1rem;
 }

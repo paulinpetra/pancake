@@ -1,5 +1,5 @@
 /* 
-  CSS organized using Cascade Layers
+  CSS organized using Cascade Layers and CUBE naming convention
   (from lowest priority layers → highest priority layers)
 */
 
@@ -92,7 +92,7 @@
   /* Card Component (article) */
   /* added nesting */
 
-  .card {
+  .recipe-card {
     background: var(--color-background);
     width: 100%;
     display: flex;
@@ -109,7 +109,7 @@
       margin-block-end: var(--space-sm); /*changed to logical properties */
     }
 
-    & .subtitle {
+    & .recipe-subtitle {
       font-weight: var(--font-weight-normal);
       font-size: var(--font-size-base);
       line-height: var(--line-height-base);
@@ -126,14 +126,14 @@
   }
 
   /* Image Grid */
-  .pancake-images {
+  .image-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: var(--space-md);
   }
 
-  .pancake-images img {
+  .gallery-image {
     width: 100%;
     object-fit: cover;
     background-color: var(--color-placeholder);

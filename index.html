@@ -6,7 +6,6 @@
     <title>
       Pannkaks recept - Enkelt och gott recept på traditionella pannkakor
     </title>
-    <!--added more context to title -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,17 +15,24 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!--added header-->
+    <!--added navbar-->
+    <nav class="nav">
+      <div class="nav-logo"><p>Recepta</p></div>
+      <ul class="nav-list">
+        <li class="nav-link"><a href="#">Alla recept</a></li>
+        <li class="nav-link"><a href="#">Om oss</a></li>
+        <li class="nav-link"><a href="#">Kontakt</a></li>
+      </ul>
+      <button class="nav-login">Logga in</button>
+    </nav>
     <header>
-      <!--removed alt text and changed to Swedish -->
       <img class="header-img" src="images/Rectangle 1.png" alt="" />
     </header>
     <main class="container">
-      <!--added header inside article-->
-      <article class="card">
+      <article class="recipe-card">
         <header>
           <h1>Enkelt recept på pannkakor</h1>
-          <p class="subtitle">
+          <p class="recipe-subtitle">
             Gör traditionella tunna pannkakor med detta enkla och goda
             pannkaksrecept
           </p>
@@ -63,18 +69,19 @@
 
         <section class="content-section serving">
           <h2>Serveringsförslag</h2>
-          <!--changed alt text to Swedish and used figure insteda of div -->
 
-          <figure class="pancake-images">
+          <figure class="image-gallery">
             <img
               src="/images/Rectangle 2.png"
               alt="Pannkakor staplade på ett fat"
               loading="lazy"
+              class="gallery-image"
             />
             <img
               src="/images/Rectangle 3.png"
               alt="Pannkakor toppade med apelsinskivor"
               loading="lazy"
+              class="gallery-image"
             />
             <figcaption>Exempel på hur du kan servera pannkakorna.</figcaption>
           </figure>

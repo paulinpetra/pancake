@@ -1,5 +1,5 @@
 /* 
-  CSS organized using Cascade Layers
+  CSS organized using Cascade Layers and CUBE naming convention
   (from lowest priority layers → highest priority layers)
 */
 
@@ -30,8 +30,10 @@
     --color-placeholder: oklch(0.885 0 0);
     --color-text: oklch(0 0 0);
     --color-border: oklch(0.991 0 0);
+    --color-nav-action: oklch(0.92 0 0);
 
     /* spacing */
+    --space-xs: 0.5rem;
     --space-sm: 1rem;
     --space-md: 1.5rem;
     --space-lg: 3rem;
@@ -44,6 +46,12 @@
     --font-size-base: 1rem;
     --font-size-lg: 1.75rem;
     --line-height-base: 1;
+
+    /* border radius scale */
+    --radius-xs: 0.25rem; /* for small elements, tags */
+    --radius-sm: 0.5rem; /* for buttons, inputs */
+    --radius-md: 0.75rem; /* for cards, larger components */
+    --radius-lg: 1rem; /* for modals, containers */
 
     /* layout */
     --container-max-width: 80rem;
@@ -82,6 +90,61 @@
 /* ===== COMPONENTS LAYER ===== */
 /* UI components */
 @layer components {
+  /* Navigation Component */
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-primary);
+  }
+
+  .nav-logo p {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-md);
+    color: var(--color-primary);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    list-style: none;
+  }
+
+  .nav-link a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+  }
+
+  .nav-login {
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--color-nav-action);
+    color: var(--color-text);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+  }
+
+  /* LARGE SCREENS */
+  @media (min-width: 600px) {
+    .nav {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      flex-direction: row;
+      gap: var(--space-md);
+    }
+  }
+
   /* Header Component */
   .header-img {
     width: 100%;
@@ -89,10 +152,9 @@
     border: 1px solid var(--color-border);
   }
 
-  /* Card Component (article) */
-  /* added nesting */
+  /* Recipe-Card Component (whole article) */
 
-  .card {
+  .recipe-card {
     background: var(--color-background);
     width: 100%;
     display: flex;
@@ -109,7 +171,7 @@
       margin-block-end: var(--space-sm); /*changed to logical properties */
     }
 
-    & .subtitle {
+    & .recipe-subtitle {
       font-weight: var(--font-weight-normal);
       font-size: var(--font-size-base);
       line-height: var(--line-height-base);
@@ -126,14 +188,14 @@
   }
 
   /* Image Grid */
-  .pancake-images {
+  .image-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: var(--space-md);
   }
 
-  .pancake-images img {
+  .gallery-image {
     width: 100%;
     object-fit: cover;
     background-color: var(--color-placeholder);

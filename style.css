@@ -16,21 +16,38 @@
     padding: 0;
     box-sizing: border-box;
   }
+  /* ADDED: resets for the form (contact page)*/
+  body {
+    line-height: 1.5;
+  }
+  /* remove default fonts and accent colors from the form*/
+  input,
+  textarea,
+  button,
+  select {
+    font: inherit;
+    accent-color: var(--color-accent);
+  }
 }
 
 /* ===== BASE LAYER ===== */
-/* root variables and basic element styling */
+/* theme variables and basic styling */
 @layer base {
   :root {
-    /* colors using css variables and oklch */
-    --color-primary: oklch(0.445 0.183 29.2);
-    --color-primary-light: oklch(0.445 0.183 29.2 / 0.3);
+    /* colors using css variables and oklch neon colors */
+    --color-primary: oklch(65% 0.3 270);
+    --color-primary-light: oklch(92% 0.28 190);
     --color-background: oklch(0.991 0 0);
     --color-surface: oklch(0.94 0 0);
-    --color-placeholder: oklch(0.885 0 0);
+    --color-placeholder: oklch(76.993% 0.00009 271.152);
     --color-text: oklch(0 0 0);
     --color-border: oklch(0.991 0 0);
     --color-nav-action: oklch(0.92 0 0);
+    /* NEW: additional colors needed for form */
+    --color-accent: oklch(65% 0.3 270); /* Same as --color-primary */
+    --color-accent-hover: oklch(60% 0.3 270);
+    --color-error: oklch(62% 0.33 25);
+    --color-muted: oklch(35% 0.05 230); /* Same as --color-placeholder */
 
     /* spacing */
     --space-xs: 0.5rem;
@@ -72,6 +89,29 @@
   ul,
   ol {
     list-style-position: inside;
+  }
+  /* base form styles */
+  input,
+  textarea,
+  .form-group:has([type="radio"]) {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+    padding: 0.5em 1em;
+
+    &:focus-visible {
+      outline-color: var(--color-accent-hover);
+    }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-placeholder);
+  }
+  label,
+  legend {
+    color: var(--color-text);
   }
 }
 
@@ -211,7 +251,6 @@
   }
 
   /* Recipe-Card Component (whole article) */
-  /* move vars!? */
 
   .recipe-card {
     background: var(--color-background);
@@ -219,7 +258,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    padding-block: var(--space-lg) var(--space-xl); /*changed to logical properties */
+    padding-block: var(--space-lg) var(--space-xl);
     padding-inline: var(--space-lg);
 
     & h1 {
@@ -227,7 +266,7 @@
       font-size: var(--font-size-lg);
       line-height: var(--line-height-base);
       color: var(--color-primary);
-      margin-block-end: var(--space-sm); /*changed to logical properties */
+      margin-block-end: var(--space-sm);
     }
 
     & .recipe-subtitle {
@@ -259,11 +298,98 @@
     object-fit: cover;
     background-color: var(--color-placeholder);
   }
+  /* ===== CONTACT FORM COMPONENTS ===== */
+  .contact {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    max-inline-size: 700px;
+    margin-inline: auto;
+    border: 1px solid var(--color-border);
+  }
+  /* grid for the form for a column and two colums on wide screen */
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-md);
+
+    @media (width > 560px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  [type="radio"],
+  [type="checkbox"] {
+    width: 1.2em;
+    height: 1.2em;
+  }
+  /* flex since not columns */
+
+  .form-group:has([type="radio"], [type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    padding: var(--space-xs);
+  }
+  .form-group:has([type="radio"]:checked) {
+    background-color: var(--color-background);
+    border-radius: var(--radius-sm);
+  }
+  /* utility class for spanning all columns on wide screen (specific to the component so not in utilities layer) */
+  .span-all {
+    grid-column: 1 / -1;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: inherit;
+    grid-template-columns: inherit; /* could normally be a subgrid but does not work on fieldset */
+  }
+  textarea {
+    resize: vertical;
+    min-height: 6em;
+  }
+  /*grid for form-groups as well if labels and fields are on different rows,
+   and also makes grid items stretch full space */
+  .form-group {
+    display: grid;
+    gap: 0.5em;
+  }
+  /* for the * on the labels */
+  fieldset:has([required]) legend,
+  .form-group:has(:not([type="radio"])[required]) label {
+    display: flex;
+    gap: 0.5ch;
+
+    &::after {
+      content: "*";
+      color: var(--color-error);
+    }
+  }
+
+  /* maybe change to a less generic selector here */
+  button {
+    background-color: var(--color-primary);
+    color: white;
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+    padding: 0.75em 1.5em;
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+    }
+  }
 }
 
 /* ===== UTILITIES LAYER ===== */
 /* single-purpose helper classes that can override everything */
 /* empty for now but could have some custom utility classes */
 @layer utilities {
-  /* example: .text-center { text-align: center; } */
 }

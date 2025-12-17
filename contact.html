@@ -9,25 +9,48 @@
   <body>
     <main class="contact">
       <h1>Contact Us</h1>
-      <form>
+      <form class="contact-form" method="post" action="#">
         <div class="form-group">
           <label for="fname">First Name</label>
-          <input type="text" id="fname" name="first_name" required />
+          <input
+            type="text"
+            id="fname"
+            name="first_name"
+            placeholder="e.g. John"
+            required
+            autocomplete="name"
+          />
         </div>
 
         <div class="form-group">
           <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="last_name" required />
+          <input
+            type="text"
+            id="lname"
+            name="last_name"
+            placeholder="e.g. Smith"
+            required
+            autocomplete="name"
+          />
         </div>
 
         <div class="form-group span-all">
           <label for="email">Email Adress</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="e.g. john.smith@example.com"
+            required
+            autocomplete="email"
+          />
         </div>
 
         <fieldset class="span-all">
           <legend>Query Type</legend>
           <div class="form-group">
+            <!--same name on radiobuttons for grouping and only select one,
+            also needs a value for the backend-->
             <input
               type="radio"
               id="general"
@@ -55,6 +78,7 @@
             type="textfield"
             id="message"
             name="message"
+            placeholder="Write your message here…"
             required
           ></textarea>
         </div>
@@ -63,7 +87,7 @@
           <input type="checkbox" name="consent" id="consent" required />
           <label for="consent">I consent to be contacted by the team</label>
         </div>
-        <button class="span-all">Submit</button>
+        <button type="submit" class="span-all">Submit</button>
       </form>
     </main>
   </body>

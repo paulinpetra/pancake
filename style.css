@@ -23,8 +23,7 @@
   /* remove default fonts and accent colors from the form*/
   input,
   textarea,
-  button,
-  select {
+  button {
     font: inherit;
     accent-color: var(--color-accent);
   }
@@ -116,7 +115,7 @@
 }
 
 /* ===== LAYOUT LAYER ===== */
-/* page level structure */
+/* page level structure for index */
 @layer layout {
   .container {
     width: 100%;
@@ -305,9 +304,18 @@
     border-radius: var(--radius-lg);
     max-inline-size: 700px;
     margin-inline: auto;
+    margin-block-start: var(--space-lg);
     border: 1px solid var(--color-border);
   }
-  /* grid for the form for a column and two colums on wide screen */
+
+  .contact h1 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-block-end: var(--space-md);
+  }
+  /* grid for the form for one column on mobile and two columns on wide screen */
 
   .contact-form {
     display: grid;
@@ -331,10 +339,7 @@
     gap: 1ch;
     padding: var(--space-xs);
   }
-  .form-group:has([type="radio"]:checked) {
-    background-color: var(--color-background);
-    border-radius: var(--radius-sm);
-  }
+
   /* utility class for spanning all columns on wide screen (specific to the component so not in utilities layer) */
   .span-all {
     grid-column: 1 / -1;
@@ -349,7 +354,7 @@
     grid-template-columns: inherit; /* could normally be a subgrid but does not work on fieldset */
   }
   textarea {
-    resize: vertical;
+    resize: block;
     min-height: 6em;
   }
   /*grid for form-groups as well if labels and fields are on different rows,
@@ -358,7 +363,7 @@
     display: grid;
     gap: 0.5em;
   }
-  /* for the * on the labels */
+  /* for the * on the labels, (but not on the radio buttons themselves) */
   fieldset:has([required]) legend,
   .form-group:has(:not([type="radio"])[required]) label {
     display: flex;

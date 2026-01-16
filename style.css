@@ -84,7 +84,6 @@
     padding-block-end: var(--space-xl);
   }
 
-  /* base list styles */
   ul,
   ol {
     list-style-position: inside;
